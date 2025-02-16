@@ -2,19 +2,18 @@ import express from "express";
 import cors from "cors";
 import translate from "translate";
 
-translate.engine = "google"; // ใช้ Google Translate engine
-translate.key = undefined; // ไม่ต้องใช้ API key
+translate.engine = "google"; 
+translate.key = undefined; 
 
 
 const app = express();
 const port = 5000;
 
 app.use(express.json());
-app.use(cors());  // เปิดใช้งาน CORS
+app.use(cors());
 
 
 app.get("/", (req, res) => {
-    console.log('bank')
 });
 
 app.post("/translate", async (req, res) => {
@@ -26,7 +25,6 @@ app.post("/translate", async (req, res) => {
     
     try {
         const translatedText = await translate(text, { from: "th", to: "en" });
-        console.log('res',translatedText)
         res.json({ translatedText });
     } catch (error) {
       console.error("Error:", error);
